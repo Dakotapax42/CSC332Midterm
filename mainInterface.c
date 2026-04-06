@@ -37,7 +37,7 @@ int main() {
     char input[MAX_INPUT];
     char *args[MAX_ARGS];
 
-    printf("Starting Custom OS Shell... Type 'help' for commands.\n");
+    printf("Starting... Please type 'help' for commands and parameters, or 'exit' to close shell.\n");
 
     while (1) {
         printf("myshell> ");
