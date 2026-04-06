@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# IDE specific files
+.idea/
+.vs/
+out/
+cmake-build-debug/
+cmake-build-release/
+
+# User-specific stuff
+*.user
+*.userosscache
+*.sln.docstates
