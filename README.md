@@ -28,6 +28,7 @@
    
 5. When finished, run test cases and try and break/test your code and create a doc/pdf of your results. you can create a simple main.c file for yourselves to test the logic and breakability, but just delete that file when you're finished. Please put your tests with screenshots and/or table of your expected output and actual output in a pdf.
 
+If you need help, just let me know, you can look at my loganylzer for help/formatting if it gets confusing.
 
 Useful links if you need to learn how to use any form of Git/github/github Desktop. I personally use github desktop because I'm a noob who is scared of the command line, but just use what's comfortable for you. 
 
