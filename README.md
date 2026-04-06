@@ -9,13 +9,13 @@
 
     Locate your Folder: Go to OrganizedFeatures/Feature_X/ (where X is your number).
 
-    Create your Files: You must have a .c file for logic and a .h file for the interface. (I've already placed them in there)
+    Create your Files: You only need to have a .c file for logic. (I've already placed them in there)
 
-    Function Uniformity: All main entry functions must follow the int start_feature(int argc, char *argv[]) format.
+    Function Uniformity: All main entry functions must follow the int start_feature(int argc, char *argv[]) format w getopt(). I have provided an outline structure to put your code into already, you can change the variables needed, add or remove more as necessary. 
 
     Commit & Push: Push your branch to GitHub and open a Pull Request for [Your Name] to review.
    
-5. When finished, run test cases and try and break your code and create a doc/pdf of your results. you can create a simple main.c file for yourselves to test the logic and breakability, but just delete that file when you're finished. 
+5. When finished, run test cases and try and break/test your code and create a doc/pdf of your results. you can create a simple main.c file for yourselves to test the logic and breakability, but just delete that file when you're finished. Please put your tests with screenshots and/or table of your expected output and actual output in a pdf.
 
 
 STILL have to define the parameters for your functions pertaining the Argv or whatever so everythings uniform. will do that tomorrow lol
