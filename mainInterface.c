@@ -1,6 +1,11 @@
 // testing the main interface of the program
 // Created by dakot on 4/6/2026.
-//
+// my commands in case I forgot and for testing my interface structure
+// cd "/cygdrive/c/Users/dakot/Documents/GitHub/CSC332Midterm"
+// make clean
+// make
+// ./myshell
+// loganalyzer -f test.log
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
