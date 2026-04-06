@@ -19,3 +19,11 @@
 
 
 STILL have to define the parameters for your functions pertaining the Argv or whatever so everythings uniform. will do that tomorrow lol
+
+
+
+Useful links if you need to learn how to use any form of Git/github/github Desktop. I personally use github desktop because I'm a noob who is scared of the command line, but just use what's comfortable for you. 
+
+https://www.youtube.com/watch?v=8Dd7KRpKeaE
+
+https://www.youtube.com/watch?v=AYJQi6TyPyU
