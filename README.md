@@ -26,7 +26,7 @@
    
 2. When finished, run test cases and try and break/test your code and create a doc/pdf of your results. you can create a simple main.c file for yourselves to test the logic and breakability, but just delete that file when you're finished. Please put your tests with screenshots and/or table of your expected output and actual output in a pdf.
 
-2.1 Compiling: To compile your feature and the shell at once, simply open your terminal in this folder and type make. I made a makefile that will generate the necessary .exe files for testing
+    2.1 Compiling: To compile your feature and the shell at once, simply open your terminal in this folder and type make. I made a makefile that will generate the necessary .exe files for testing
 
                 For full compilation, you'll want to:
                 Save your code.
