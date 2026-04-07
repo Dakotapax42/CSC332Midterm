@@ -3,7 +3,7 @@
 1. Create a repository of the git and work within your section
     Clone the main GitHub repository using GitHub Desktop.
 
-    Create a New Branch named after your feature ( feature_supercoolthingy). Do not work directly on the 'main' branch.
+    Create a New Branch named after your feature. Do not work directly on the 'main' branch.
 
     Locate your File: Go to your .c file named after the task assigned in the discord.
 
@@ -11,7 +11,7 @@
 
     Function Uniformity: All main entry functions must follow the int main(int argc, char *argv[]) format w getopt(). I have provided an outline structure to put your code into already, you can change the variables needed, add or remove more as necessary.
 
-                Here are the basic paramters I have listed for each of the functions:
+                Here are the basic paramters I assume that are needed for each of the functions to operate:
                    Loganalyzer: -f [filepath]
 
                     Filecrypt: -f [filepath] -k [key]
@@ -99,7 +99,7 @@ Every feature must include a text file following the standard man page format.
         Also include screenshots: Cropped screenshots of terminal showing the command being run and the result.
 
     
-If you need help, just let me know, you can look at my loganalyzer.c in the root for help/formatting if it gets confusing or ask me for questions.
+If you need help, just let me know, you can look at my loganalyzer.c in the root for help/formatting and as reference.
 
 Useful links if you need to learn how to use any form of Git/github/github Desktop. I personally use github desktop because I'm a noob who is scared of the command line, but just use what's comfortable for you. 
 
