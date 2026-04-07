@@ -4,7 +4,7 @@
 // cd "/cygdrive/c/Users/dakot/Documents/GitHub/CSC332Midterm"
 // make clean
 // make
-// ./myshell
+//./myshell
 // loganalyzer -f test.log
 #include <stdio.h>
 #include <stdlib.h>
