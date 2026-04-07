@@ -12,13 +12,13 @@
     Function Uniformity: All main entry functions must follow the int main(int argc, char *argv[]) format w getopt(). I have provided an outline structure to put your code into already, you can change the variables needed, add or remove more as necessary.
 
                 Here are the basic paramters I assume that are needed for each of the functions to operate:
-                   Loganalyzer: -f [filepath]
+                    Loganalyzer: -f [filepath]
 
                     Filecrypt: -f [filepath] -k [key]
 
                     Timedexec: -t [seconds] -c [command]
 
-                    Filediff: -a [file1] -b [file2]
+                    Filediffadvanced: -a [file1] -b [file2]
 
                     Processgroup: -g [groupid] -s [signal]
 
