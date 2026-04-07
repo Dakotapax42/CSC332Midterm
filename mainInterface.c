@@ -14,7 +14,7 @@
 
 #define MAX_INPUT 1024
 #define MAX_ARGS 64
-
+// whitelist so users can only strictly type these choices+help/exit for errorhandling
 const char *whitelist[] = {
     "filecrypt", "timedexec", "filediffadvanced", "processgroup", "loganalyzer", NULL
 };
@@ -25,7 +25,7 @@ int is_whitelisted(const char *cmd) {
     }
     return 0;
 }
-
+// displays help options with example parameters 
 void display_help() {
     printf("\n--- Custom Shell Command Guide ---\n");
     printf("Format: <command> [flags] [arguments]\n\n");
@@ -43,14 +43,14 @@ int main() {
     char *args[MAX_ARGS];
 
     printf("Starting... Please type 'help' for commands and parameters, or 'exit' to close shell.\n");
-
+    // reads input and displays ui, will continue until exit
     while (1) {
         printf("myshell> ");
         if (fgets(input, sizeof(input), stdin) == NULL) break;
-
+        // remove newline and ignor empty enter inputs
         input[strcspn(input, "\n")] = 0;
         if (strlen(input) == 0) continue;
-
+        
         if (strcmp(input, "exit") == 0) break;
         if (strcmp(input, "help") == 0) {
             display_help();
@@ -64,18 +64,25 @@ int main() {
             args[i] = strtok(NULL, " ");
         }
         args[i] = NULL;
-
+        // verifies commands are or arent in approved whitelist section
         if (!is_whitelisted(args[0])) {
             printf("Error: '%s' is not whitelisted. Type 'help' for list.\n", args[0]);
             continue;
         }
-
+        // creates new process to execute selected utility
         pid_t pid = fork();
-        if (pid == 0) {
+        
+        if (pid < 0) {
+            perror("Fork failed");
+        }
+            
+        else if (pid == 0) {
             char path[256];
             snprintf(path, sizeof(path), "./%s", args[0]);
+            
             if (execvp(path, args) == -1) {
                 perror("Execution failed");
+                // prevents child from continuing as second shell
                 exit(EXIT_FAILURE);
             }
         } else {
