@@ -43,48 +43,48 @@ Every feature must include a text file following the standard man page format.
 
 3.1 Example
 
-        NAME
-            myshell - a custom command-line interpreter and process manager
+            NAME
+                myshell - a custom command-line interpreter and process manager
 
-        SYNOPSIS
-            ./myshell
+            SYNOPSIS
+                ./myshell
 
-        DESCRIPTION
-            myshell is a custom Unix-like shell environment designed to manage 
-            and execute a suite of specialized system utilities. It acts as the 
-            parent process, reading user input, parsing command-line arguments, 
-            and using fork() and execvp() to spawn child processes for specific 
-            tasks.
-
-            The shell continuously prompts the user for input until the 'exit' 
-            command is issued. It serves as a unified interface for the 
-            CSC332 Midterm toolset.
-
-        BUILT-IN COMMANDS
-            exit
-                Terminates the shell and returns control to the host operating 
-                system.
-
-        SUPPORTED UTILITIES
-            The shell supports executing the following utilities (assuming they 
-            are compiled in the same directory):
+            DESCRIPTION
+                myshell is a custom Unix-like shell environment designed to manage 
+                and execute a suite of specialized system utilities. It acts as the 
+                parent process, reading user input, parsing command-line arguments, 
+                and using fork() and execvp() to spawn child processes for specific 
+                tasks.
     
-            - loganalyzer  : Analyzes log files via memory mapping.
-            - filecrypt    : Encrypts/decrypts files using a key.
-            - filediff     : Compares two files.
-            - timedexec    : Executes a command with a timeout.
-            - processgroup : Manages signals for a specific process group.
-
-        EXAMPLES
-            Starting the shell:
-                $ ./myshell
-                myshell> 
-                
-            Running a utility from within the shell:
-                myshell> loganalyzer -f test.log
-
-        AUTHOR
-            Dakota Paxton - Project Lead
+                The shell continuously prompts the user for input until the 'exit' 
+                command is issued. It serves as a unified interface for the 
+                CSC332 Midterm toolset.
+    
+            BUILT-IN COMMANDS
+                exit
+                    Terminates the shell and returns control to the host operating 
+                    system.
+    
+            SUPPORTED UTILITIES
+                The shell supports executing the following utilities (assuming they 
+                are compiled in the same directory):
+        
+                - loganalyzer  : Analyzes log files via memory mapping.
+                - filecrypt    : Encrypts/decrypts files using a key.
+                - filediff     : Compares two files.
+                - timedexec    : Executes a command with a timeout.
+                - processgroup : Manages signals for a specific process group.
+    
+            EXAMPLES
+                Starting the shell:
+                    $ ./myshell
+                    myshell> 
+                    
+                Running a utility from within the shell:
+                    myshell> loganalyzer -f test.log
+    
+            AUTHOR
+                Dakota Paxton - Project Lead
 
 4. Final Deliverables (By the 18th latest):
    Please submit a PDF in the /docs folder above that contains the following:
