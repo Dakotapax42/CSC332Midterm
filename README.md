@@ -86,7 +86,7 @@ Every feature must include a text file following the standard man page format.
         AUTHOR
             Dakota Paxton - Project Lead
 
-4. Final Deliverables:
+4. Final Deliverables (By the 18th latest):
    Please submit a PDF in the /docs folder above that contains the following:
    Page 1: The Man Page
    
