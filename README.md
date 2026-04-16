@@ -9,6 +9,9 @@
 
     Edit your File: I have already included the template to follow the getopt() and argc/argv structure for input, and included the necessary headers as per explained in the next bullet point.
 
+    Add Neccessary Test Files: Some of the apps need extra files to run (like how loganalyzer needs a test.log for data), so add any neccessary files, but clearly mark
+       what they're for. For example, if Filediffadvanced needs two files or more, name them something simple like filediff1 and filediff2.
+
     Function Uniformity: All main entry functions must follow the int main(int argc, char *argv[]) format w getopt(). I have provided an outline structure to put your code into already, you can change the variables needed, add or remove more as necessary.
 
                 Here are the basic paramters I assume that are needed for each of the functions to operate:
@@ -24,7 +27,7 @@
 
     Commit & Push: Push your branch to GitHub and open a Pull Request for [Your Name] to review.
    
-2. When finished, run test cases and try and break/test your code and create a doc/pdf of your results. you can create a simple main.c file for yourselves to test the logic and breakability, but just delete that file when you're finished. Please put your tests with screenshots and/or table of your expected output and actual output in a pdf.
+3. When finished, run test cases and try and break/test your code and create a doc/pdf of your results. you can create a simple main.c file for yourselves to test the logic and breakability, but just delete that file when you're finished. Please put your tests with screenshots and/or table of your expected output and actual output in a pdf.
 
     2.1 Compiling: To compile your feature and the shell at once, simply open your terminal in this folder and type make. I made a makefile that will generate the necessary .exe files for testing
 
@@ -34,7 +37,7 @@
                 Type make to compile everything automatically.
                 Run the shell with ./myshell to test your feature.
 
-3. Documentation (Man Pages)
+4. Documentation (Man Pages)
 Every feature must include a text file following the standard man page format.
 
             Title it: [feature_name].man
