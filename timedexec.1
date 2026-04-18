@@ -1,0 +1,167 @@
+.TH TIMEDEXEC 1 "2025" "v1.0.0" "User Commands"
+
+.SH NAME
+timedexec \- run a command with CPU, memory, and wall\-clock resource limits
+
+.SH SYNOPSIS
+.B timedexec
+[\fIOPTIONS\fR]
+.B \-\-
+\fIcommand\fR [\fIargs\fR...]
+
+.SH DESCRIPTION
+.B timedexec
+forks a child process to run the given \fIcommand\fR and monitors it in
+real time using a dedicated POSIX thread.  If the child exceeds any of
+the configured resource limits it is killed with \fBSIGKILL\fR and a
+summary is printed.  Resource usage (wall time, CPU time, peak RSS) is
+always reported when the child finishes.
+
+Monitoring is done by periodically reading
+.B /proc/<pid>/stat
+(CPU time) and
+.B /proc/<pid>/status
+(RSS memory).  As a belt\-and\-suspenders measure,
+.BR setrlimit (2)
+is also applied to the child for the CPU limit so the kernel itself will
+enforce it via \fBSIGXCPU\fR even if the monitor thread is delayed.
+
+Signals \fBSIGINT\fR and \fBSIGTERM\fR received by
+.B timedexec
+are forwarded to the child process.
+
+.SH OPTIONS
+.TP
+.BI \-t " sec"
+Wall\-clock (real) time limit in seconds.  The child is killed with
+\fBSIGKILL\fR if it runs longer than \fIsec\fR seconds of elapsed time.
+.TP
+.BI \-c " sec"
+CPU time limit in seconds (user + system time consumed by the child).
+.TP
+.BI \-m " MB"
+Resident set size (RSS) memory limit in megabytes.
+.TP
+.BI \-i " ms"
+Polling interval in milliseconds (default: \fB500\fR).  Lower values
+increase responsiveness but add overhead.
+.TP
+.BI \-o " file"
+Write the monitoring output and final summary to \fIfile\fR instead of
+\fBstderr\fR.
+.TP
+.B \-v
+Verbose mode.  Print a resource usage line on every polling interval
+while the child is running.
+.TP
+.B \-h
+Print a short help message and exit.
+
+.SH EXIT STATUS
+.TP
+.B 0
+The child exited successfully with status 0.
+.TP
+.B N
+The child exited with status \fIN\fR.
+.TP
+.B 124
+The child was killed because the wall\-clock time limit was exceeded.
+.TP
+.B 125
+The child was killed because the CPU time limit was exceeded.
+.TP
+.B 126
+The child was killed because the memory (RSS) limit was exceeded.
+.TP
+.B 127
+An internal error occurred in
+.B timedexec
+itself (e.g., \fBfork\fR(2) or \fBexecvp\fR(3) failure, bad arguments).
+
+.SH EXAMPLES
+.TP
+Kill a process that runs longer than 5 seconds:
+.nf
+timedexec \-t 5 \-\- sleep 10
+.fi
+.TP
+Limit CPU to 2 seconds and memory to 512 MB, with verbose output:
+.nf
+timedexec \-c 2 \-m 512 \-v \-\- ./heavy_computation
+.fi
+.TP
+All limits, poll every 200 ms, log to file:
+.nf
+timedexec \-t 30 \-c 10 \-m 256 \-i 200 \-o run.log \-v \-\- ./server \-p 8080
+.fi
+.TP
+Check the exit code to detect which limit was hit:
+.nf
+timedexec \-t 5 \-\- ./prog
+case $? in
+  124) echo "Killed: wall\-clock limit";;
+  125) echo "Killed: CPU limit";;
+  126) echo "Killed: memory limit";;
+  127) echo "Internal error";;
+  *)   echo "Normal exit";;
+esac
+.fi
+
+.SH TECHNICAL DETAILS
+.SS System Calls and Interfaces Used
+.TP
+.BR fork (2)
+Creates the child process.
+.TP
+.BR execvp (3)
+Replaces the child image with the target command.
+.TP
+.BR pthreads (7)
+A monitor thread (\fBpthread_create\fR) polls
+.B /proc
+at regular intervals and enforces limits independently of the main thread.
+.TP
+.BR getopt (3)
+Parses command\-line options portably.
+.TP
+.BR setrlimit (2)
+Applied in the child for \fBRLIMIT_CPU\fR as a kernel\-enforced backstop.
+.TP
+.BR getrusage (2)
+Collects final CPU and peak RSS statistics after the child exits.
+.TP
+.BR sigaction (2)
+Installs signal handlers that forward \fBSIGINT\fR/\fBSIGTERM\fR to the child.
+.TP
+.BR clock_gettime (2)
+High\-resolution monotonic clock for wall\-time measurement.
+.TP
+.B /proc/<pid>/stat
+Parsed for user and system CPU ticks.
+.TP
+.B /proc/<pid>/status
+Parsed for \fBVmRSS\fR (current resident set size in kB).
+
+.SH COMPILATION
+.nf
+gcc \-Wall \-Wextra \-O2 \-o timedexec timedexec.c \-lpthread
+.fi
+
+.SH BUGS
+.IP \(bu 4
+RSS monitoring reflects only the monitored process; child sub\-processes
+are not currently tracked.
+.IP \(bu 4
+On very short\-lived programs the monitor thread may not sample before
+the process exits; the final \fBgetrusage\fR(2) stats are still accurate.
+
+.SH AUTHOR
+Written for the CS Advanced Systems Programming project.
+
+.SH SEE ALSO
+.BR timeout (1),
+.BR ulimit (1),
+.BR setrlimit (2),
+.BR getrusage (2),
+.BR proc (5)
