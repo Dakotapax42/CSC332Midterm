@@ -1,0 +1,4 @@
+Hello class, this is group 2 presenting the fileDiffAdvance function.
+This is just a test.
+Test test 123.
+Test test 456.
