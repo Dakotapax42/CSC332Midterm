@@ -32,7 +32,7 @@ void display_help() {
     printf("Format: <command> [flags] [arguments]\n\n");
     printf("1. loganalyzer      : loganalyzer -f <filename>\n");
     printf("2. filecrypt        : filecrypt -f <filename> -k <key>\n");
-    printf("3. timedexec        : timedexec -t <seconds> -c <command>\n");
+    printf("3. timedexec        : timedexec -t <wall seconds> -c <CPU seconds> -m <MB memory> -- <command>\n");
     printf("4. filediffadvanced : filediffadvanced -a <file1> -b <file2>\n");
     printf("5. processgroup     : processgroup -g <pgid> -s <signal>\n");
     printf("\nBuilt-in: help, exit\n");
