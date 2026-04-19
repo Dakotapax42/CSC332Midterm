@@ -15,13 +15,27 @@
 #include <time.h>
 #define OFFSET 100
 
+
+char * type(char *file){
+    char *ext = strrchr(file, '.');
+    if (!ext) {
+        printf("Not a file.\n");
+        return NULL;
+    } else {
+        // ext points to ".png", so ext + 1 points to "png"
+        return (ext + 1);
+        }
+}
+
 void compFile(char *stringA, size_t sizeA, char *stringB, size_t sizeB) {
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
     // numA and numB: The lengths (number of characters) of our strings
 
-
     int V[200];
+
+
+
     for(int i = 0; i < 200; i++) V[i] = 0;
 
     V[OFFSET + 1] = 0;
@@ -64,8 +78,18 @@ void compFile(char *stringA, size_t sizeA, char *stringB, size_t sizeB) {
 }
 int main(int argc, char *argv[]) {
     int opt;
-    char *fileA = "C:/Users/dakot/Documents/GitHub/CSC332Midterm/filediff1.txt"; // Change the paths to test if you want
-    char *fileB = "C:/Users/dakot/Documents/GitHub/CSC332Midterm/filediff2.txt";
+    char *fileA = "filediff1.txt";// Change the paths to test if you want
+    char *fileB = "filediff2.txt";
+
+    if (strcmp(type(fileA), type(fileB)) != 0){//Checks if files are usable
+        printf("ERROR!!\nCompared files have to be same.\n");
+        return -1;
+    }
+    if (strcmp(type(fileA), "txt") != 0){
+        printf("ERROR!!\nOnly .txt files allowed.\n");
+        return -1;
+    }
+
 
     // update the parameters of the string "f:k:s:" to ONLY include the letters assigned to their specific feature.
     while ((opt = getopt(argc, argv, "f:k:t:c:a:b:g:s:")) != -1) {

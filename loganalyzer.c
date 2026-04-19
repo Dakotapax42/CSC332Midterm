@@ -39,8 +39,8 @@ int main(int argc, char *argv[]) {
     if (ptr == MAP_FAILED) { perror("mmap"); return 1; }
     // analyze the file by counting the number of lines and print the results. might expand this later idk yet, basic but proves point
     size_t lines = 0;
-    for (size_t i = 0; i < s.st_size; i++) {
-        if (ptr[i] == '\n') lines++;
+for (size_t i = 0; i < (size_t)s.st_size; i++) {
+    if (ptr[i] == '\n') lines++;
     }
 
     printf("Analysis Complete: %zu bytes, %zu lines found.\n", (size_t)s.st_size, lines);
