@@ -1,14 +1,18 @@
-//
-// Created by dakot on 4/6/2026.
-//
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
+#include <getopt.h> // greyed out bc we're using unistd, but in case anyones using a diff compiler or gcc version, leave it here for help
+#include <time.h>
 
 int main(int argc, char *argv[]) {
+    // start the timer
+    struct timespec start, end;
+    clock_gettime(CLOCK_MONOTONIC, &start);
+
     int opt;
     char *filepath = NULL;
     // using the getopt function to parse the command line arguments, looking for the -f flag followed by filename
@@ -39,11 +43,17 @@ int main(int argc, char *argv[]) {
     if (ptr == MAP_FAILED) { perror("mmap"); return 1; }
     // analyze the file by counting the number of lines and print the results. might expand this later idk yet, basic but proves point
     size_t lines = 0;
-for (size_t i = 0; i < (size_t)s.st_size; i++) {
-    if (ptr[i] == '\n') lines++;
+    for (size_t i = 0; i < (size_t)s.st_size; i++) {
+        if (ptr[i] == '\n') lines++;
     }
 
+    // stop the timer and calculate duration
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    double time_taken = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1e9;
+
     printf("Analysis Complete: %zu bytes, %zu lines found.\n", (size_t)s.st_size, lines);
+    printf("Execution Time: %.6f seconds\n", time_taken);
+
     // cleanup to avoid memory leaks and close file descriptor
     if (munmap(ptr, s.st_size) == -1) {
         perror("munmap");
