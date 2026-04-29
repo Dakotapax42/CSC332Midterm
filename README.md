@@ -5,10 +5,15 @@
 PROFESSOR QUICKSTART GUIDE:
 
 Ensure you're cd'd into the project folder, example: cd /cygdrive/c/Users/dakot/Desktop/CSC332_MIDTERM_GROUP2
+
 type the following commands to run:
+
 'make clean'
+
 'make'
+
 './myshell'
+
 
 
 
